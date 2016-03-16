@@ -78,8 +78,11 @@ class Hash(object):
 				return cur
 
 	def list_all_keys(self):
+		output = ""
 		for i in range(self.maxHash):
 			if self.hash[i]:
-				self.hash[i].printkv()
+				output += self.hash[i].printkv()
+				output += "\n"
+		return output
 
 

@@ -11,5 +11,5 @@ print h.list_all_keys()
 print h.find("Alice's").get_value()
 
 #writing to file
-#write_file(h.list_all_keys())
+write_file(h.list_all_keys())
 

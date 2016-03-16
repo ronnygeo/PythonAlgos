@@ -69,13 +69,15 @@ class LinkedList(object):
 
 	def printkv(self):
 		cur = self.head
-
+		output = ""
 		while cur:
-			print cur.get_key(), cur.get_value()
+			output+= cur.get_key() + " " + str(cur.get_value()) + " POSITIONS: "
 			posll = cur.get_positions()
 			curr = posll.head
 			while curr:
-				print curr.get_value()
+				output+= str(curr.get_value()) + " "
 				curr = curr.get_next_element()
+			output += "\n"
 			cur = cur.get_next_element()
+		return output
 
