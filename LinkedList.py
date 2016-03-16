@@ -12,7 +12,7 @@ class Node(object):
 	def get_value(self):
 		return self.value
 
-	def get_position(self):
+	def get_positions(self):
 		return self.positions
 
 	def get_next_element(self):
@@ -20,6 +20,9 @@ class Node(object):
 
 	def set_value(self, value):
 		self.value = value
+
+	def set_positions(self, pos):
+		self.positions = pos
 
 	def set_next_element(self, next_element):
 		self.next_element = next_element
@@ -30,7 +33,7 @@ class LinkedList(object):
 
 	def insert(self, k, v):
 		newNode = Node(k, v)
-		newNode.next_element = self.head
+		newNode.set_next_element(self.head)
 		self.head = newNode
 
 	def search(self, k):
@@ -66,6 +69,13 @@ class LinkedList(object):
 
 	def printkv(self):
 		cur = self.head
+
 		while cur:
 			print cur.get_key(), cur.get_value()
+			posll = cur.get_positions()
+			curr = posll.head
+			while curr:
+				print curr.get_value()
+				curr = curr.get_next_element()
 			cur = cur.get_next_element()
+

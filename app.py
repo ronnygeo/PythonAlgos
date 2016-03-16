@@ -5,10 +5,11 @@ f = split_lines(read_file('alice.txt'))
 
 h = Hash(f)
 
-print h.find("Alice").get_value()
+print h.list_all_keys()
 
-#h.list_all_keys()
+#search for string
+print h.find("Alice's").get_value()
 
-#print len(f)
-#print type(split_lines(f))
-#print len(split_lines(f))
+#writing to file
+#write_file(h.list_all_keys())
+

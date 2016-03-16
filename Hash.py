@@ -22,35 +22,50 @@ class Hash(object):
 
 
 	def insert_all_keys(self):
-		for key in self.keys:
+		for k in range(len(self.keys)):
+			key = self.keys[k]
 			n = self.find(key)
 			if n == None:
-				self.insert(key, 1)
+				self.insert(key, 1, k)
 			else:
-				self.increase(key)
+				self.increase(key, k)
 
-	def insert(self, key, value):
+	def insert(self, key, value, pos):
 		index = self.hash_function(key)
 		if self.hash[index] == None:
 			node = Node(key, value)
+			newNode = Node(key, pos)
+			l = LinkedList(newNode)
+			node.set_positions(l)
 			self.hash[index] = LinkedList(node)
 		else:
 			cur = self.hash[index].search(key)
 			if cur == None:
 				self.hash[index].insert(key, value)
+				posNode = Node(key, pos)
+				l = LinkedList(posNode)
+				self.hash[index].search(key).set_positions(l)
 			else:
 				cur.set_value(value)
+				p = cur.get_positions()
+				cur.set_positions(p.insert(key, pos))
 
 	def delete(self, key):
 		index = self.hash_function(key)
 		if self.hash[index] != None:
 			self.hash[index].delete(key)
 
-	def increase(self, key):
+	def increase(self, key, pos):
 		n = self.find(key)
 		v = n.get_value()
 		n.set_value(v + 1)
-
+		p = n.get_positions()
+		newNode = Node(key, pos)
+		if p == None:
+			l = LinkedList(newNode)
+			n.set_positions(l)
+		else:
+			p.insert(key, pos)
 
 	def find(self, key):
 		index = self.hash_function(key)
@@ -66,3 +81,5 @@ class Hash(object):
 		for i in range(self.maxHash):
 			if self.hash[i]:
 				self.hash[i].printkv()
+
+
