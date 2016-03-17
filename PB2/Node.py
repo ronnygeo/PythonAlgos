@@ -4,9 +4,11 @@ class Nil(object):
 	def __init__(self):
 		self.color = "BLACK"
 
+NIL = Nil()
+
 class Node(object):
-	def __init__(self, value, color="RED", left=Nil(), right=Nil(), parent=Nil()):
-		self.value = value
+	def __init__(self, key, color="RED", left=NIL, right=NIL, parent=NIL):
+		self.key = key
 		self.color = color
 		self.left = left
 		self.right = right

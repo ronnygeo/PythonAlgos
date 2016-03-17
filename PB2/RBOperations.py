@@ -5,10 +5,10 @@ from RBTree import *
 def left_rotate(T, x):
 	y = x.right
 	x.right = y.left
-	if y.left != Nil():
+	if y.left != NIL:
 		y.left.p = x
 	y.p = x.p
-	if x.p == Nil():
+	if x.p == NIL:
 		T.root = y
 	elif x == x.p.left:
 		x.p.left = y
@@ -21,10 +21,10 @@ def left_rotate(T, x):
 def right_rotate(T, x):
 	y = x.left
 	x.left = y.right
-	if y.right != Nil():
+	if y.right != NIL:
 		y.right.p = x
 	y.p = x.p
-	if x.p == Nil():
+	if x.p == NIL:
 		T.root = y
 	elif x == x.p.right:
 		x.p.right = y
@@ -34,23 +34,23 @@ def right_rotate(T, x):
 	x.p = y
 
 def rb_insert(T, z):
-	y = Nil()
+	y = NIL
 	x = T.root
-	while x != Nil():
+	while x != NIL:
 		y = x
 		if z.key < x.key:
 			x = x.left
 		else:
 			x = x.right
 	z.p = y
-	if y == Nil():
+	if y == NIL:
 		T.root = z
 	elif z.key < y.key:
 		y.left = z
 	else:
 		y.right = z
-	z.left = Nil()
-	z.right = Nil()
+	z.left = NIL
+	z.right = NIL
 	z.color = "RED"
 	rb_insert_fixup(T, z)
 
@@ -88,50 +88,46 @@ def rb_insert_fixup(T, z):
 
 
 def rbt_minimum(x):
-	while x.left != Nil():
+	while x.left != NIL:
 		x = x.left
 	return x
 
 
 def rbt_maximum(x):
-	while x.right != Nil():
+	while x.right != NIL:
 		x = x.right
 	return x
 
 
 def rbt_successor(x):
-	if x.right != Nil():
+	if x.right != NIL:
 		return rbt_minimum(x.right)
 	y = x.p
-	while y != Nil() and x == y.right:
+	while y != NIL and x == y.right:
 		x = y
 		y = y.p
 	return y
 
 
 def rbt_predecessor(x):
-	if x.left != Nil():
+	if x.left != NIL:
 		return rbt_maximum(x.left)
 	y = x.p
-	while y != Nil() and x == y.left:
+	while y != NIL and x == y.left:
 		x =y
 		y = y.p
 	return y
 
 
 def rbt_height(n):
-	if n == Nil():
+	if n == NIL:
 		return 0
 	return max(1 + rbt_height(n.left), 1 + rbt_height(n.right))
 
 
-def sort(T):
-	node = T.root
-	sort_helper(node)
-
-def sort_helper(node):
+def sort(node):
 	l = []
-	if node != Nil() and node != None:
+	if node != NIL:
 		l += sort(node.left)
 		l.append(node.key)
 		l += sort(node.right)
@@ -140,7 +136,7 @@ def sort_helper(node):
 
 def search(T, key):
 	x = T.root
-	while x != Nil() and key != x.key:
+	while x != NIL and key != x.key:
 		if key < x.key:
 			x = x.left
 		else:
