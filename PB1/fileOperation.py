@@ -4,7 +4,9 @@ def read_file(filename):
 
 
 def split_lines(txt):
-	return txt.split(' ')
+	import re
+	return re.findall(r"\w+", txt)
+	#return txt.split(' ')
 
 def write_file(text):
 	out_file = open('data.txt', 'w')
