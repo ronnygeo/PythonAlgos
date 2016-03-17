@@ -7,9 +7,9 @@ class Nil(object):
 NIL = Nil()
 
 class Node(object):
-	def __init__(self, key, color="RED", left=NIL, right=NIL, parent=NIL):
+	def __init__(self, key, color="RED", left=NIL, right=NIL, p=NIL):
 		self.key = key
 		self.color = color
 		self.left = left
 		self.right = right
-		self.parent = parent
+		self.p = p

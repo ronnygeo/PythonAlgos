@@ -13,12 +13,12 @@ a = [int(x) for x in a_temp2]
 
 for i in range(len(a)):
 	rb_insert(tree, Node(a[i]))
-print "After the Initial import, height of the tree is " + str(rbt_height(tree.root))
+print "After the Initial import, height: " + str(rbt_height(tree.root))
 
 
 inp = ''
 while inp != 'q':
-	input = raw_input("Enter your command (insert x, sort, search x, minimum, maximum, etc). q to exit.\n")
+	input = raw_input("Enter your command (insert x, sort, search x, delete x, minimum, maximum, etc). q to exit.\n")
 	inp = input.split(' ')
 	if str(inp[0]) == "insert":
 		rb_insert(tree, Node(int(inp[1])))
@@ -28,6 +28,10 @@ while inp != 'q':
 			print "key exists."
 		else:
 			print "key not found."
+	elif inp[0] == "delete":
+		k = Node(int(inp[1]))
+		rb_delete(tree, k)
+		print "Key", k, " deleted."
 	elif inp[0] == "sort":
 		print "Sorted Order: ", sort(tree.root)
 	elif inp[0] == "minimum":
@@ -38,6 +42,8 @@ while inp != 'q':
 		print "Successor: ", rbt_successor(tree.root).key
 	elif inp[0] == "predecessor":
 		print "Predecessor: ", rbt_predecessor(tree.root).key
+	elif inp[0] =='q':
+		continue
 	else:
 		print "Invalid Option."
 	print "Height: ", rbt_height(tree.root)
